@@ -1,2 +1,2 @@
 #!/bin/bash
-current_directory=$(pwd)
+current_directory=$(pwd)/0-current_working_directory/root/alx-system_engineering-devops/0x00-shell_basics$
