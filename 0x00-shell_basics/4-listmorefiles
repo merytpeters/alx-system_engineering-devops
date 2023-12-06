@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -la . .. 0-current_working_directory  1-listit  2-bring_me_home  3-listfiles  4-listmorefiles  README.md 
+ls -l . .. 0-current_working_directory  1-listit  2-bring_me_home  3-listfiles  4-listmorefiles  README.md 
