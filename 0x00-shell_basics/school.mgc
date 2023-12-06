@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -xamp
+file -m* 0 string  SCHOOL School
