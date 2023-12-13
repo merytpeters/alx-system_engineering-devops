@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "Decimal: $((2#"$BINARY"))"
