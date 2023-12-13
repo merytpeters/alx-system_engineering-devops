@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "path of the new directory: $(pwd)/action"
+echo $PATH/action
