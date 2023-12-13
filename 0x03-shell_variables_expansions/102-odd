@@ -1,2 +1,2 @@
 #!/bin/bash
-\ls -1 | sed -n '1~2p'
+\ls -1 | paste -d \n - - | cut -f 1 
