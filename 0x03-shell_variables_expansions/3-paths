@@ -1,2 +1,2 @@
 #!/bin/bash
-export PATH=$PATH:$dir_count
+export PATH=$PATH:/action:$(find -type d | wc -l)
