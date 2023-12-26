@@ -1,2 +1,2 @@
 #!/bin/bash
-find /root/alx-system_engineering-devops/0x02-shell_redirections -type f -empty -o -type d -empty | ls -1aR
+ls -laR | find . -type f -empty
