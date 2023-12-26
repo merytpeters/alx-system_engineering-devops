@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -laR | find . -type f -empty
+ls -1aR | find . -type f -empty
