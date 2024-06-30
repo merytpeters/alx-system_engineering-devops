@@ -6,7 +6,8 @@ file { '/root/.ssh/config':
   group   => 'root',
   mode    => '0644',
   content => "\
-Host 3.84.238.65
+Host *
+    HostName 3.84.238.65
     PasswordAuthentication no
     IdentityFile ~/.ssh/school
 ",
