@@ -4,8 +4,8 @@ file { '/root/.ssh/config':
   ensure  => 'present',
   owner   => 'root',
   group   => 'root',
-  mode    => '0600',
-  content => "
+  mode    => '0644',
+  content => "\
 Host merytserver
     HostName 3.84.238.65
     PasswordAuthentication no
