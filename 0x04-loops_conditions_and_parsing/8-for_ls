@@ -3,6 +3,9 @@
 # List content names after first -
 
 directory="."
-for dir in "${directory[@]}"; do
-    ls "$dir"
+for file in "${directory[@]}"/*-*; do
+    if [[ ! "$(basename "$file")" == .* ]] && [ -f "$file" ]; then
+        filename=$(basename "$file" | cut -d'-' -f2-)
+        echo "$filename"
+    fi
 done
