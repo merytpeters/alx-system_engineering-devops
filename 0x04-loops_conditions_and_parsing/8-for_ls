@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# List all content of the current directory using for loop
+# List content names after first -
+
+directory="."
+for dir in "${directory[@]}"; do
+    ls "$dir"
+done
