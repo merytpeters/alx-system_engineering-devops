@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Configure Nginx server so that /redirect_me redirects to another page
+
+apt-get -y update
+
+apt-get -y upgrade
+
+apt-get -y install nginx
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+redir_site="www.linkedin.com/in/edafemerit"
+replacement="location /redirect_me {\n\treturn 301 https:\/\/$redir_site;\n}"
+
+sed -i "/^\s*server\s*{[^}]*$/a $replacement" /etc/nginx/sites-available/default
+
+service nginx restart
