@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Shorter
+apt-get update
+apt-get -y upgrade
+apt-get -y install nginx
+service nginx status | grep "not running"
