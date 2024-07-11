@@ -15,7 +15,9 @@ service nginx enable
 
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
-sed -i '/listen 80 default_server;/!b;n;c\listen 80 default_server;' /etc/nginx/sites-available/default
+sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+
+sed -i 's/listen \[::\]:80 default_server;/listen [::]:80;/' /etc/nginx/sites-available/default
 
 # Test Nginx configuration
 nginx -t
