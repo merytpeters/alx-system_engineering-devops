@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Update and Install Nginx web
+
+apt-get -y update
+
+apt-get -y upgrade
+
+apt-get -y install nginx
+
+# Configure Nginx to add custom header
+sudo bash -c 'cat <<EOT > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    add_header X-Served-By \$hostname;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOT'
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Reload Nginx to apply changes
+service nginx reload
