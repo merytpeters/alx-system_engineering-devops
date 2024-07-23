@@ -7,15 +7,18 @@ apt-get -y upgrade
 
 apt-get -y install nginx
 
+# Get the hostname of the server
+HOSTNAME=$(hostname)
+
 # Configure Nginx to add custom header
 sudo bash -c 'cat <<EOT > /etc/nginx/sites-available/default
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    server_name _;
+    server_name $HOSTNAME;
 
-    add_header X-Served-By \$hostname;
+    add_header X-Served-By \$HOSTNAME;
 
     location / {
         try_files \$uri \$uri/ =404;
