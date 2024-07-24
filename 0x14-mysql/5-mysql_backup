@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+  
+# Check if the script received an argument (MySQL root password)
+if [ -z "$1" ]; then
+  echo "Usage: $0 <mysql_root_password>"
+  exit 1
+fi
+
+MYSQL_ROOT_PASSWORD="$1"
+
+# Generate the MySQL dump containing all databases
+mysqldump -u root -p"$MYSQL_ROOT_PASSWORD" --all-databases > backup.sql
+
+# Check if the mysqldump command was successful
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to generate MySQL dump"
+  exit 1
+fi
+
+# Get the current date in the format day-month-year
+DATE=$(date +%d-%m-%Y)
+
+# Create a compressed tar.gz archive with the name format day-month-year.tar.gz
+tar -czf "${DATE}.tar.gz" backup.sql
+
+# Check if the tar command was successful
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to create tar.gz archive"
+  exit 1
+fi
+
+echo "Backup successfully created: ${DATE}.tar.gz"
