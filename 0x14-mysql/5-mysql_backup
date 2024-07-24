@@ -12,7 +12,7 @@ MYSQL_ROOT_PASSWORD="$1"
 mysqldump -u root -p"$MYSQL_ROOT_PASSWORD" --all-databases > backup.sql
 
 # Check if the mysqldump command was successful
-if [ $? -ne 0 ]; then
+if ! mysqldump -u user -p password database > backup.sql;then
   echo "Error: Failed to generate MySQL dump"
   exit 1
 fi
@@ -24,7 +24,7 @@ DATE=$(date +%d-%m-%Y)
 tar -czf "${DATE}.tar.gz" backup.sql
 
 # Check if the tar command was successful
-if [ $? -ne 0 ]; then
+if ! cp backup.sql /backup/location/; then
   echo "Error: Failed to create tar.gz archive"
   exit 1
 fi
