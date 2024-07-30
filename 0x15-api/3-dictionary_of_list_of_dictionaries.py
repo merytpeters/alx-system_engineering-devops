@@ -44,5 +44,3 @@ for employee in employees_data:
 json_filename = "todo_all_employees.json"
 with open(json_filename, mode='w') as json_file:
     json.dump(all_todos, json_file, indent=4)
-
-print(f"Data exported to {json_filename}")
