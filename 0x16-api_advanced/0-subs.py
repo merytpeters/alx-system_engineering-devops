@@ -8,7 +8,7 @@ import requests
 def number_of_subscribers(subreddit):
     """Gets number of subscribers"""
 
-    base_url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    base_url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': 'custom-script/1.0'}
 
     try:
