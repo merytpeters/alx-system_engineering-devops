@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Queries the Reddit API and returns the number of subscribers"""
 
 
