@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Extract visitor IP address and HTTP status code
 
 # Path to the Apache access log file
 LOG_FILE="apache-access.log"
