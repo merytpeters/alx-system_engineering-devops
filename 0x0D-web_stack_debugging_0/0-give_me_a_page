@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo apachectl start # Had to add ServerName localhost to apache config file
