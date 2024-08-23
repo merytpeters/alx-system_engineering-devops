@@ -1,0 +1,40 @@
+#!/bin/env bash
+
+
+# Update and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Create Nginx configuration
+NGINX_CONF="/etc/nginx/sites-available/default"
+
+sudo bash -c "cat > $NGINX_CONF" <<EOL
+server {
+    listen 80;
+    server_name _;  # This makes Nginx listen on all IP addresses
+
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000;  # Proxy requests to the process on port 5000
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+
+    # Proxy for /airbnb-dynamic/number_odd_or_even/(any integer) route
+    location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)/?$ {
+        rewrite ^/airbnb-dynamic/number_odd_or_even/(\d+)/?$ /number_odd_or_even/$1 break;
+        proxy_pass http://127.0.0.1:5001;  # Proxy requests to the Gunicorn instance on port 5001
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+}
+EOL
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Reload Nginx to apply the configuration
+sudo service nginx reload
